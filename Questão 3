@@ -1,0 +1,63 @@
+#NOME: Kamylly Ferreira da Paixão
+#PERIODO: 2º
+#CURSO: Técnico em Informática
+#DATA: 27/09/2024
+funcionarios = []
+def add_funcionario(funcionarios):
+  nome = input("Digite o nome do funcionário: ")
+  while nome == "":
+    print("Nome inválido")
+    nome = input("Digite o nome do funcionário: ")
+  idade = int(input("Digite a idade do funcionário: "))
+  cargo = input("Digite o cargo do funcionário: ")
+  while cargo == "":
+    print("O cargo não pode estar vazio. Digite.")
+    cargo = input("Digite o cargo do funcionario: ")
+  funcionario = {'nome': nome, 'idade': idade, 'cargo': cargo}
+  funcionarios.append(funcionario)
+  print("Funcionário adicionado com sucesso!")
+def listar_funcionarios(funcionarios):
+  if not funcionarios:
+    print("Nenhum funcionario cadastrado")
+    return
+  print("====== LISTA DE FUNCIONARIOS ======")
+  for funcionario in funcionarios:
+    print(f"Nome: {funcionario['nome']}")
+    print(f"Idade: {funcionario['idade']}")
+    print(f"Cargo: {funcionario['cargo']}")
+    print("==============================")
+def buscar_por_cargo(funcionarios, cargo_busca):
+  if not funcionarios:
+    print("Nenhuma funcionario foi cadastrado")
+    return
+  print(f"===== FUNCIONARIOS COM O CARGO DE       {cargo_busca} =====")
+  encontrados = False
+  for funcionario in funcionarios:
+    if funcionario['cargo'] == cargo_busca:
+      print(f"Nome: {funcionario['nome']}")
+      print(f"Idade: {funcionario['idade']}")
+      print(f"Cargo: {funcionario['cargo']}")
+      print("===============================")
+      encontrados = True
+  if not encontrados:
+    print(f"Nenhum funcionario cadastrado com o cargo de {cargo_busca}.")
+while True:
+  print("======= ADICIONAR FUNCIONARIOS =======")
+  print("Escolha uma opção")
+  print("1- Adicionar funcionario")
+  print("2- Listar funcionarios")  
+  print("3- Buscar funcionarios por cargo")
+  print("4- Sair")
+  opcao = int(input("Digite a opção desejada: "))
+  if opcao == 1:
+    add_funcionario(funcionarios)
+  elif opcao == 2:
+    listar_funcionarios(funcionarios)
+  elif opcao == 3:
+    cargo_busca = input("Digite o cargo a ser buscado: ")
+    buscar_por_cargo(funcionarios, cargo_busca)
+  elif opcao == 4:
+    print("Saindo do sistema...")
+    break
+  else:
+    print("Opção inválida.")
