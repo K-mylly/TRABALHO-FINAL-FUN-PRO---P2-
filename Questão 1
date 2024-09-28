@@ -1,0 +1,22 @@
+#NOME: Kamylly Ferreira da Paixão
+#PERIODO: 2º
+#CURSO: Técnico em Informática
+#DATA: 27/09/2024
+temperaturas = []
+for i in range(1, 11):
+    while True:
+        temp = float(input(f"Digite a {i}ª temperatura (entre 15 e 40): "))
+        if 15 <= temp <= 40:
+            temperaturas.append(temp)
+            break
+        else:
+            print("Ops! A temperatura deve estar entre 15°C e 40°C.")
+menor_temp = min(temperaturas)
+maior_temp = max(temperaturas)
+media_temp = sum(temperaturas) / len(temperaturas)
+dias_abaixo_media = len([temp for temp in temperaturas if temp < media_temp])
+print("======= RESULTADO ========")
+print(f"Menor temp. –: {menor_temp}")
+print(f"Maior temp. –: {maior_temp}")
+print(f"Temperatura média –: {media_temp:.2f}")
+print(f"Dias temp. inf. média -: {dias_abaixo_media}")
