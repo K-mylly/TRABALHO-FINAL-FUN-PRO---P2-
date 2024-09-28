@@ -1,0 +1,54 @@
+#NOME: Kamylly Ferreira da Paixão
+#PERIODO: 2º
+#CURSO: Técnico em Informática
+#DATA: 27/09/2024
+import random
+
+# Dicionário com categorias e listas de animais
+animais = {
+    "Mamíferos": ["elefante", "cachorro", "gato", "leão"],
+    "Aves": ["papagaio", "águia", "coruja", "pato"],
+    "Répteis": ["jacaré", "cobra", "tartaruga", "lagarto"],
+    "Peixes": ["tubarão", "salmão", "tilápia", "piranha"],
+    "Anfíbios": ["sapo", "rã", "salamandra", "cururu"]
+}
+
+# Exibir categorias e permitir escolha
+print("===== JOGO DE ADIVINHAÇÃO DE PALAVRAS =====")
+print("Escolha uma categoria de animais:")
+for i, categoria in enumerate(animais.keys(), 1):
+    print(f"{i} – {categoria}")
+
+# Validar entrada do usuário
+while True:
+    try:
+        escolha = int(input("Digite o número da categoria desejada: "))
+        if 1 <= escolha <= len(animais):
+            categoria_escolhida = list(animais.keys())[escolha - 1]
+            break
+        else:
+            print("Escolha inválida, tente novamente.")
+    except ValueError:
+        print("Por favor, insira um número válido.")
+
+# Selecionar palavra aleatória da categoria escolhida
+palavra_secreta = random.choice(animais[categoria_escolhida])
+
+# Informar o número de letras da palavra
+print(f"\nVamos Iniciar o Jogo! A palavra tem {len(palavra_secreta)} letras.")
+
+# Lista para armazenar palpites
+palpites = []
+
+# Loop para tentar adivinhar a palavra
+while True:
+    palpite = input("Tente adivinhar a palavra: ").lower()
+    palpites.append(palpite)
+
+    if palpite == palavra_secreta:
+        print(f"Parabéns! Você acertou a palavra '{palavra_secreta}'")
+        print(f"Número de palpites: {len(palpites)}")
+        print(f"Palpites realizados: {palpites}")
+        break
+    else:
+        print("Palpite incorreto. Tente novamente.")
