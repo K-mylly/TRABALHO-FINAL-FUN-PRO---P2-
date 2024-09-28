@@ -1,0 +1,63 @@
+#ALUNA: Kamylly Ferreira da Paixão
+#PERIODO: 2
+#CURSO: Técnico em Informática
+#DATA: 27/09/2024
+def adicionar_tarefa(lista_tarefas):
+  """Adiciona uma nova tarefa à lista de tarefas."""
+  descricao = input("Digite a descrição da tarefa: ")
+  while True:
+    prioridade = input("Digite a prioridade da tarefa (alta, média, baixa): ").lower()
+    if prioridade in ["alta", "média", "baixa"]:
+      break
+    else:
+      print("Prioridade inválida. Digite 'alta', 'média' ou 'baixa'.")
+  nova_tarefa = {"descricao": descricao, "prioridade": prioridade}
+  lista_tarefas.append(nova_tarefa)
+  print("Tarefa adicionada com sucesso!")
+def exibir_tarefas(lista_tarefas):
+  """Exibe todas as tarefas cadastradas, organizadas por prioridade."""
+  if not lista_tarefas:
+    print("Não há tarefas cadastradas.")
+    return
+  tarefas_ordenadas = sorted(lista_tarefas, key=lambda tarefa: tarefa["prioridade"], reverse=True)
+  for i, tarefa in enumerate(tarefas_ordenadas):
+    print(f"{i+1}. {tarefa['descricao']} ({tarefa['prioridade']})")
+def concluir_tarefa(lista_tarefas):
+  """Conclui uma tarefa da lista de tarefas."""
+  exibir_tarefas(lista_tarefas)
+  if not lista_tarefas:
+    return
+  while True:
+    try:
+      indice = int(input("Digite o número da tarefa a ser concluída: ")) - 1
+      if 0 <= indice < len(lista_tarefas):
+        break
+      else:
+        print("Número de tarefa inválido.")
+    except ValueError:
+      print("Entrada inválida. Digite um número.")
+  del lista_tarefas[indice]
+  print("Tarefa concluída!")
+def main():
+  """Função principal do programa."""
+  tarefas = []
+  while True:
+    print("======= GERENCIADOR DE TAREFAS =======")
+    print("1- Adicionar tarefa")
+    print("2- Exibir tarefas")
+    print("3- Concluir tarefa")
+    print("4- Sair")
+    opcao = input("Escolha uma opção: ")
+    if opcao == "1":
+      adicionar_tarefa(tarefas)
+    elif opcao == "2":
+      exibir_tarefas(tarefas)
+    elif opcao == "3":
+      concluir_tarefa(tarefas)
+    elif opcao == "4":
+      print("Saindo do programa...")
+      break
+    else:
+      print("Opção inválida.")
+if __name__ == "__main__":
+  main()
